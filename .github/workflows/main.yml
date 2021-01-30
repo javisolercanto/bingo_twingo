@@ -33,12 +33,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: [syntax_check_job, test_execution_job] 
     steps:
-      - name: CheckoutCode
+      - name: Checkout Code
         uses: actions/checkout@v2
-      - name: BuildApp
+      - name: Build app
         run: |
-          npm install
-          npm run build
+          npm i
+          npm run buildDev
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
         with:
