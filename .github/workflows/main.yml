@@ -24,7 +24,7 @@ jobs:
           JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.js
           VALIDATE_JAVASCRIPT_ES: true
         if: ${{ success() }}
-        echo: '::set-env name=SYNTAX_OUTPUT::Success'
+        run: echo 'Success' >> $SYNTAX_OUTPUT
   test_execution_job:
     name: Test execution
     runs-on: ubuntu-latest
@@ -35,8 +35,8 @@ jobs:
         run: | 
             npm i
             npm run test
-      if: ${{ success() }}
-      echo: '::set-env name=TEST_OUTPUT::Success'
+      # if: ${{ success() }}
+      # echo: '::set-env name=TEST_OUTPUT::Success'
   build_statics_job:
     name: Build
     runs-on: ubuntu-latest
@@ -53,8 +53,8 @@ jobs:
         with:
           name: artifact
           path: dist
-      if: ${{ success() }}
-      echo: '::set-env name=BUILD_OUTPUT::Success'
+      # if: ${{ success() }}
+      # echo: '::set-env name=BUILD_OUTPUT::Success'
   deploy_job:
     name: Deploy
     runs-on: ubuntu-latest
@@ -71,5 +71,5 @@ jobs:
           project: .
           login: ${{ secrets.SURGE_LOGIN }}
           token: ${{ secrets.SURGE_TOKEN }}
-      if: ${{ success() }}
-      echo: '::set-env name=DEPLOY_OUTPUT::Success'
+      # if: ${{ success() }}
+      # echo: '::set-env name=DEPLOY_OUTPUT::Success'
