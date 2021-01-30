@@ -25,8 +25,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
       - name: Run test
-        run: npm install jest
-             npm run test
+        run: | 
+            npm install jest
+            npm run test
   #     - name: Setting node version
   #       uses: actions/setup-node@v2
   #       with:
