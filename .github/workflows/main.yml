@@ -43,25 +43,20 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: artifact
-          path: build
-  #     - name: Setting node version
-  #       uses: actions/setup-node@v2
-  #       with:
-  #         node-version: ${{ matrix.node }}
-  #     - name: LinterExecution
-  #       uses: github/super-linter@v3
-  #       env:
-  #         DEFAULT_BRANCH: nodejs_nodeversions_job
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #         LINTER_RULES_PATH: /
-  #         JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.json
-  #         VALIDATE_JAVASCRIPT_ES: true
-  # test-execution:
-  #   name: test-execution
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v2
-  #     - name: Run jest tests
-  #       run: npm install jest
-  #             npm run test
+          path: dist
+  deploy_job:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: [build_statics_job] 
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: artifact
+      - name: Deploy Artifacts
+        uses: dswistowski/surge-sh-action@v1
+        with:
+          domain: javisolercanto.surge.sh
+          project: .
+          login: ${{ secrets.SURGE_LOGIN }}
+          token: ${{ secrets.SURGE_TOKEN }}
