@@ -22,7 +22,9 @@ jobs:
     name : Test execution
     runs-on: ubuntu-latest
     steps:
-      - name: 
+      - name: Run test
+        run: npm install jest
+             npm run test
   #     - name: Setting node version
   #       uses: actions/setup-node@v2
   #       with:
