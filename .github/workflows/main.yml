@@ -18,6 +18,11 @@ jobs:
           LINTER_RULES_PATH: /
           JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.js
           VALIDATE_JAVASCRIPT_ES: true
+  test_execution_job:
+    name : Test execution
+    runs-on: ubuntu-latest
+    steps:
+      - name: 
   #     - name: Setting node version
   #       uses: actions/setup-node@v2
   #       with:
