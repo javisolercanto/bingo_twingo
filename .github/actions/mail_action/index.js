@@ -9,7 +9,7 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-const mailOptions = {
+const options = {
   from: 'jsolercanto11@gmail.com',
   to: core.getInput('EMAIL'),
   subject: 'Estado del workflow ejecutado en Github',
@@ -20,7 +20,7 @@ const mailOptions = {
   \nDeploy:       ${core.getInput('DEPLOY')}`
 };
 
-transporter.sendMail(mailOptions, function(error, info){
+transporter.sendMail(options, function(error, info){
   if (error) {
     core.setFailed(error);
   } else {
