@@ -4,21 +4,27 @@ inputs:
   PASSWORD:
     description: "Password of email"
     required: true
+
   EMAIL:
     description: "Receiver email"
     required: true
+
   SYNTAX:
     description: "Syntax job status"
     required: true
+
   TEST:
     description: "Test job status"
     required: true
+
   BUILD:
     description: "Build job status"
     required: true
+
   DEPLOY:
     description: "Deploy job status"
     required: true
+    
 outputs:
   response:
     description: "Action response"
