@@ -78,19 +78,19 @@ jobs:
       status: ${{ job.status }}
 
   email_job:
-  name: Email
-  runs-on: ubuntu-latest
-  needs: [syntax_check_job, test_execution_job, build_statics_job, deploy_job]
-  if: ${{ always() }}
-  steps:
-    - name: Checkout Code
-      uses: actions/checkout@v2
-    - name: Send email
-      uses: ./.github/actions/mail-action
-      with:
-        PASSWORD: ${{ secrets.PASSWORD }}
-        EMAIL: ${{ secrets.EMAIL }}
-        SYNTAX: ${{ needs.syntax_check_job.outputs.status }}
-        TEST: ${{ needs.test_execution_job.outputs.status }}
-        BUILD: ${{ needs.build_statics_job.outputs.status }}
-        DEPLOY: ${{ needs.deploy_job.outputs.status }}
+    name: Email
+    runs-on: ubuntu-latest
+    needs: [syntax_check_job, test_execution_job, build_statics_job, deploy_job]
+    if: ${{ always() }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Send email
+        uses: ./.github/actions/mail-action
+        with:
+          PASSWORD: ${{ secrets.PASSWORD }}
+          EMAIL: ${{ secrets.EMAIL }}
+          SYNTAX: ${{ needs.syntax_check_job.outputs.status }}
+          TEST: ${{ needs.test_execution_job.outputs.status }}
+          BUILD: ${{ needs.build_statics_job.outputs.status }}
+          DEPLOY: ${{ needs.deploy_job.outputs.status }}
