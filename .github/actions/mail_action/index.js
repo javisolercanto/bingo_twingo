@@ -12,12 +12,12 @@ const transporter = nodemailer.createTransport({
 const options = {
   from: 'javisolertests@gmail.com',
   to: core.getInput('EMAIL'),
-  subject: 'Estado del workflow ejecutado en Github',
-  text: `Resultados de los jobs ejecutados en el workflow:
-  \nSyntax Check: ${core.getInput('SYNTAX')}
-  \nTesting:      ${core.getInput('TEST')}
-  \nBuild:        ${core.getInput('BUILD')}
-  \nDeploy:       ${core.getInput('DEPLOY')}`
+  subject: 'Resultado del workflow ejecutado',
+  text: `Se ha realizado un push en la rama githubActions_improvement que ha provocado la ejecución del workflow Bingo_Workflow con los siguientes resultados:
+  - syntax_check_job: ${core.getInput('SYNTAX')}
+  - test_execution_job: ${core.getInput('TEST')}
+  - build_statics_job: ${core.getInput('BUILD')}
+  - deploy_job: ${core.getInput('DEPLOY')}`
 };
 
 transporter.sendMail(options, function(error, info){
