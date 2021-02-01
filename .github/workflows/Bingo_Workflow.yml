@@ -97,7 +97,7 @@ jobs:
           DEPLOY: ${{ needs.deploy_job.outputs.status }}
 
   update_readme_job:
-    name: update_readme_job
+    name: Update Readme
     runs-on: ubuntu-latest
     needs: [deploy_job]
     steps:

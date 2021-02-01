@@ -30,8 +30,8 @@ inputs:
     required: true
 
   EMAIL_TO:
-  description: "Email who will recieve the email"
-  required: true
+    description: "Email who will recieve the email"
+    required: true
 
   SYNTAX:
     description: "Syntax job status"
