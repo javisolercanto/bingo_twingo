@@ -11,13 +11,13 @@ const core = __nccwpck_require__(5002);
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'jsolercanto11@gmail.com',
+    user: 'javisolertests@gmail.com',
     pass: core.getInput('PASSWORD')
   }
 });
 
-const mailOptions = {
-  from: 'jsolercanto11@gmail.com',
+const options = {
+  from: 'javisolertests@gmail.com',
   to: core.getInput('EMAIL'),
   subject: 'Estado del workflow ejecutado en Github',
   text: `Resultados de los jobs ejecutados en el workflow:
@@ -27,7 +27,7 @@ const mailOptions = {
   \nDeploy:       ${core.getInput('DEPLOY')}`
 };
 
-transporter.sendMail(mailOptions, function(error, info){
+transporter.sendMail(options, function(error, info){
   if (error) {
     core.setFailed(error);
   } else {
