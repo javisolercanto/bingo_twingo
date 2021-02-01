@@ -1,13 +1,37 @@
 name: "Send an email"
 description: "Action to send an email to get jobs status"
 inputs:
+  REPO_NAME:
+    description: "Repository name"
+    required: true
+
+  BRANCH_NAME:
+    description: "Branch name"
+    required: true
+
+  WORKFLOW_NAME:
+    description: "Workflow name"
+    required: true
+
+  ACTOR:
+    description: "Logged username"
+    required: true
+
+  REPO_OWNER:
+    description: "Repository owner name"
+    required: true
+
   PASSWORD:
     description: "Password of email"
     required: true
 
-  EMAIL:
-    description: "Receiver email"
+  EMAIL_FROM:
+    description: "Email from is sent the email"
     required: true
+
+  EMAIL_TO:
+  description: "Email who will recieve the email"
+  required: true
 
   SYNTAX:
     description: "Syntax job status"

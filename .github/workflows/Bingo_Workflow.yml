@@ -1,13 +1,8 @@
-name: main
+name: Bingo_Workflow
 on:
   push:
     branches:
       - githubActions_improvement
-env:
-  SYNTAX_OUTPUT: ${{ 'Failed' }}
-  TEST_OUTPUT: ${{ 'Failed' }}
-  BUILD_OUTPUT: ${{ 'Failed' }}
-  DEPLOY_OUTPUT: ${{ 'Failed' }}
 jobs:
   syntax_check_job:
     name: Syntax check
@@ -88,9 +83,34 @@ jobs:
       - name: Send email
         uses: ./.github/actions/mail_action
         with:
+          REPO_NAME: ${{ github.repository }}
+          BRANCH_NAME: ${{ github.ref }}
+          WORKFLOW_NAME: ${{ github.workflow }}
+          ACTOR: ${{ github.actor }}
+          REPO_OWNER: ${{ github.repository_owner }}
           PASSWORD: ${{ secrets.PASSWORD }}
-          EMAIL: ${{ secrets.EMAIL }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
           SYNTAX: ${{ needs.syntax_check_job.outputs.status }}
           TEST: ${{ needs.test_execution_job.outputs.status }}
           BUILD: ${{ needs.build_statics_job.outputs.status }}
           DEPLOY: ${{ needs.deploy_job.outputs.status }}
+
+   update_readme_job:
+    name: update_readme_job
+    runs-on: ubuntu-latest
+    needs: [deploy_job]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Update README.md
+        run: |
+          sed -i '$d' README.md
+          echo -e "\n\n - Última versión desplegada el día: `date`" >> README.md
+      - name: Save README.md
+        run: |
+          git config user.name ${{ secrets.GIT_USERNAME }}
+          git config user.email ${{ secrets.GIT_EMAIL }}
+          git add .
+          git commit -m "Readme modificado"
+          git push origin githubActions_improvement
