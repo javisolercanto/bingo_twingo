@@ -4,13 +4,13 @@ const core = require("@actions/core");
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'jsolercanto11@gmail.com',
+    user: 'javisolertests@gmail.com',
     pass: core.getInput('PASSWORD')
   }
 });
 
 const options = {
-  from: 'jsolercanto11@gmail.com',
+  from: 'javisolertests@gmail.com',
   to: core.getInput('EMAIL'),
   subject: 'Estado del workflow ejecutado en Github',
   text: `Resultados de los jobs ejecutados en el workflow:
