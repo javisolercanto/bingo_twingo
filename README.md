@@ -327,7 +327,7 @@ outputs:
     status: ${{ job.status }}
 ```
 
-![Email](./images/gmail.png)
+![Email](https://github.com/javisolercanto/bingo_twingo/blob/gh-pages/images/gmail.PNG?raw=true)
 
 ### update_readme_job
 
