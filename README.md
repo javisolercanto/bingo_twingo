@@ -109,7 +109,7 @@ Lo hemos llamado test_execution_job, y sus steps son:
 
 **Run test**: ejecutará dos comandos, `npm i` el cual instalará todas las dependencias necesarias para la ejecución del proyecto y los tests. Como segundo comando `npm run test` el cual ejecutará ya los tests y nos mostrará el resultado de los mismos.
 
-![Tests results](./images/tests.png)
+![Tests results](https://github.com/javisolercanto/bingo_twingo/blob/gh-pages/images/tests.PNG?raw=true)
 
 ### build_statics_job
 
@@ -171,7 +171,7 @@ deploy_job:
 
 **Deploy artifacts**: utilizaremos la acción propia de surge **dswistowski/surge-sh-action@v1** para poder realizar el deploy, necesitamos definir el dominio que queremos utilizar, la ruta de los archivos que queremos subir, el correo de nuestra cuenta en surge y el token que hemos generado en una terminal local ejecutando el comando `surge token`. Este correo y el token estarán definidos en las opciones del repositorio en los secrets.
 
-![Deploy result](./images/surge.png)
+![Deploy result](https://github.com/javisolercanto/bingo_twingo/blob/gh-pages/images/surge.PNG?raw=true)
 
 ###### Resultado del deploy en nuestro dominio.
 
@@ -320,7 +320,7 @@ Este job debe ejecutarse siempre una vez se hayan ejecutado todos los anteriores
 
 **Send email**: esta es nuestra acción creada, por ello, debemos indicar la ruta donde se encuentra en nuestro directorio local, e indicar todos los inputs que necesita nuestra action. Usamos github context para la información del repositorio, los secrets del repositorio para la información comprometida y los outputs de los jobs para saber el estado de cada uno de ellos, para conseguir estos outputs debemos añadir esta línea al final de cada job.
 
-![Secrets](./images/secrets.png)
+![Secrets](https://github.com/javisolercanto/bingo_twingo/blob/gh-pages/images/secrets.PNG?raw=true)
 
 ```
 outputs:
@@ -359,8 +359,8 @@ update_readme_job:
 
 **Save README**: subiremos los cambios utilizando los comandos de git, todas las credenciales las recogeremos del apartado de secrets de nuestro repositorio.
 
-![Update readme](./images/readme.png)
+![Update readme](https://github.com/javisolercanto/bingo_twingo/blob/gh-pages/images/readme.PNG?raw=true)
 
 Este es el resultado de todos nuestros jobs
 
-![Summary](./images/summary.png)
+![Summary](https://github.com/javisolercanto/bingo_twingo/blob/gh-pages/images/summary.PNG?raw=true)
